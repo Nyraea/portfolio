@@ -65,12 +65,12 @@
                     <div class="row my-3">
                         <div class="col">
                             <h4 class = "text-white"><b>Room Price:</b> {{ $guest['maRoomPrice'] }}</h4>
-                            <h4 class = "text-white"><b>Total Price:</b> P{{ $guest['totalPrice'] }}</h2>
+                            <h4 class = "text-white"><b>Total Price:</b> P{{ $guest['maTotalPrice'] }}</h4>
                         </div>
                     </div>
 
                     <div class = "d-flex row justify-content-center dark-blue">
-                        <div class = "d-flex col justify-content-center text-white"> <b>@MJ2024</b> </div>
+                        <div class = "d-flex col justify-content-center text-white"> <b>@MA2024</b> </div>
                     </div> 
 
                 </form>

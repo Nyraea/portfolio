@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Booking;
 
 class GuestController extends Controller
 {
@@ -10,9 +11,10 @@ class GuestController extends Controller
         return view('guest');
     }
 
-    public function submitForm(Request $request) {
+    public function submitForm(Request $request) { 
 
-        $validated = $request->validate([
+        $validated = $request->validate
+        ([
             'maFirstname' => 'required',
             'maLastname' => 'required',
             'maEmail' => 'required|email',
@@ -24,8 +26,8 @@ class GuestController extends Controller
             'maPax' => 'required|numeric',
             'maSpecialRequest' => 'nullable'
         ]);
-
-        $roomPrices = [
+        $roomPrices = 
+        [
             'standard' => 1500,
             'deluxe' => 3000,
             'suite' => 4500
@@ -33,22 +35,21 @@ class GuestController extends Controller
 
         $roomPrice = $roomPrices[$validated['maRoom']];
         $totalPrice = $roomPrice * $validated['maDays'];
-
-        $validated['totalPrice'] = $totalPrice;
+        $validated['maTotalPrice'] = $totalPrice;
         $validated['maRoomPrice'] = $roomPrice;
 
+        Booking::create($validated);
+
         session(['guest_data' => $validated]);
-        return redirect()->route('display')->with('success', 'Booking completed!');
+        return redirect()->route('display')->with('success', 'Successfully booked!');
     }
 
     public function display(Request $request) 
     {
         $guestData = session('guest_data');
-
         if (!$guestData) {
-            return redirect()->route('index')->with('error', 'Please fill up the form completely.');
+            return redirect()->route('index')->with('error', 'No form data.');
         }
-
         return view('display', ['guest' => $guestData]);
     }
 }
