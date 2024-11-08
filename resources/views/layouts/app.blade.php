@@ -13,7 +13,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Moderustic:wght@300..800&display=swap" rel="stylesheet">
 </head>
 <body class = "">
-
+    @include('layouts.navbar')
+    <br/>
+    <br/>
+    <br/>
     <div class="">
         <!-- Yield the content section -->
         @yield('content')
